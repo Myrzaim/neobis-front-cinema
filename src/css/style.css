@@ -10,6 +10,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
 }
 .navbar p {
   font-size: 32px;
@@ -30,7 +31,7 @@ body {
 .navbar__links {
   display: flex;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 20px;
   list-style-type: none;
   margin-left: 2rem;
 }
@@ -41,17 +42,18 @@ body {
 }
 
 .container {
-  margin: 2rem;
+  margin: 2rem 0;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .container__card {
-  width: 18rem;
+  width: 16rem;
   height: 30rem;
   margin-bottom: 1.5rem;
   color: white;
   position: relative;
+  padding: 0.5rem;
 }
 .container__card img {
   width: 16rem;
@@ -60,6 +62,7 @@ body {
 .container__card span {
   border: 1px dashed red;
   border-radius: 50px;
+  background-color: #202020;
   padding: 10px;
   position: absolute;
   z-index: 1;
@@ -69,9 +72,20 @@ body {
 .container__card p {
   color: yellow;
   margin-top: 0.5rem;
+  margin-left: 3rem;
 }
 .container__card h4 {
   margin-bottom: 0;
+  margin-top: 0.5rem;
+  margin-left: 3rem;
+}
+.container__card .card__favorite-icon {
+  position: absolute;
+  z-index: 1;
+  top: 25rem;
+}
+.container__card .liked {
+  fill: red;
 }
 
 /*# sourceMappingURL=style.css.map */

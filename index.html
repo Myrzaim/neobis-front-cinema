@@ -11,10 +11,10 @@
     <div class="navbar">
       <p class="navbar__title">Movie App</p>
       <ul class="navbar__links">
-        <li><a href="#">ТОП Ожидаемых</a></li>
-        <li><a href="#">ТОП Лучших </a></li>
-        <li><a href="#">Премьеры </a></li>
-        <li><a href="#">Релиз</a></li>
+        <li><a href="#" onclick="render('top_waiting')">ТОП Ожидаемых</a></li>
+        <li><a href="#" onclick="render('top_popular')">ТОП Лучших </a></li>
+        <li><a href="#" onclick="render('top_premiers')">Премьеры </a></li>
+        <li><a href="#" onclick="render('releases')">Релиз</a></li>
         <li><a href="#">Избранные</a></li>
       </ul>
       <input
@@ -24,17 +24,7 @@
         name="search"
       />
     </div>
-    <div class="container">
-      <div class="container__card">
-        <span>10</span>
-        <img
-          src="https://kinopoiskapiunofficial.tech/images/posters/kp_small/5399182.jpg"
-          alt="img"
-        />
-        <h4>Title</h4>
-        <p>Jenre</p>
-      </div>
-    </div>
-    <script src="./js/main.js"></script>
+    <div class="container"></div>
+    <script src="./src/js/main.js"></script>
   </body>
 </html>
