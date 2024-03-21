@@ -13,7 +13,9 @@ const TOP_RELEASES_API =
 function render(val) {
   let api = FILMS_API;
   let counter = 20;
+
   let container = document.querySelector(".container");
+  localStorage.setItem("favorites", []);
   container.innerHTML = "";
   if (val == "top_premiers") {
     counter = 10;
@@ -28,6 +30,7 @@ function render(val) {
     counter = 10;
     api = TOP_RELEASES_API;
   }
+
   fetch(api, {
     method: "GET",
     headers: {
@@ -37,6 +40,7 @@ function render(val) {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       let datas = val == "releases" ? data.releases : data.items;
       datas.forEach((item) => {
         if (item.nameRu) {
@@ -53,7 +57,7 @@ function render(val) {
                     : ""
                 }
                
-                <svg
+                <svg onclick = "favoriteFunc(${item.kinopoiskId})"
                   class="card__favorite-icon"
                   fill="#ffffff"
                   height="30px"
@@ -94,9 +98,24 @@ function render(val) {
     })
     .catch((err) => alert(err));
 }
-render("ff");
+render("");
+let arr = [];
+localStorage.setItem("favorites", JSON.stringify(arr));
+
 function getGenres(genres) {
   let result = "";
   genres.forEach((i) => (result += i.genre + ", "));
   return result.substring(0, result.length - 2);
+}
+
+function favoriteFunc(id) {
+  let arr1 = JSON.parse(localStorage.getItem("favorites"));
+  if (arr1.includes(id)) {
+    arr1.splice(arr1.indexOf(id), 1);
+    console.log(arr1);
+  } else {
+    arr1.push(id);
+  }
+  localStorage.setItem("favorites", JSON.stringify(arr1));
+  console.log(JSON.parse(localStorage.getItem("favorites")));
 }
