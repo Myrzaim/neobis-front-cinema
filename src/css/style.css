@@ -82,6 +82,7 @@ body {
 .container__card .card__favorite-icon {
   position: absolute;
   z-index: 1;
+  fill: white;
   top: 25rem;
 }
 .container__card .liked {
