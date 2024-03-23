@@ -11,14 +11,19 @@ const TOP_WAITING_API =
 const TOP_RELEASES_API =
   "https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2024&month=FEBRUARY&page=1";
 const GET_FILM_API = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
+const SEARCH_API =
+  "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
+//   &page=1
 
 let container = document.querySelector(".container");
 let page = "";
+
 function render(val) {
   page = val;
   let api = FILMS_API;
   let counter = 20;
   container.innerHTML = "";
+
   if (val == "top_premiers") {
     counter = 10;
     api = TOP_PREMIERS_API;
@@ -34,6 +39,9 @@ function render(val) {
   } else if (val == "favorites") {
     favoriteCardList();
     return;
+  } else if (val == "search") {
+    let inpValue = document.querySelector("#searchInp").value;
+    api = SEARCH_API + inpValue + "&page=1";
   }
 
   fetch(api, {
@@ -46,7 +54,12 @@ function render(val) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      let datas = val == "releases" ? data.releases : data.items;
+      let datas =
+        val == "releases"
+          ? data.releases
+          : val == "search"
+          ? data.films
+          : data.items;
       datas.forEach((item) => {
         if (item.nameRu) {
           if (counter == 0) {
@@ -62,6 +75,7 @@ function render(val) {
 render("");
 
 function createCard(container, item) {
+  let id = page == "search" ? item.filmId : item.kinopoiskId;
   container.innerHTML += ` 
     <div class="container__card"> 
     
@@ -71,10 +85,8 @@ function createCard(container, item) {
         : ""
     }
    
-    <svg onclick = "favoriteFunc(${item.kinopoiskId})"
-      class="card__favorite-icon ${
-        isFavorite(item.kinopoiskId) ? " liked" : ""
-      }" id="${item.kinopoiskId}"
+    <svg onclick = "favoriteFunc(${id})"
+      class="card__favorite-icon ${isFavorite(id) ? " liked" : ""}" id="${id}"
       height="30px"
       width="30px"
       version="1.1"
@@ -177,3 +189,7 @@ function getFilm(id) {
     })
     .catch((err) => alert(err));
 }
+let inpValue = document.querySelector("#searchInp");
+inpValue.addEventListener("change", () => {
+  render("search");
+});
