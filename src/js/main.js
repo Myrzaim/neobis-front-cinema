@@ -13,7 +13,6 @@ const TOP_RELEASES_API =
 const GET_FILM_API = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
 const SEARCH_API =
   "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
-//   &page=1
 
 let container = document.querySelector(".container");
 let page = "";
@@ -53,7 +52,7 @@ function render(val) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      //   console.log(data);
       let datas =
         val == "releases"
           ? data.releases
@@ -142,6 +141,7 @@ function addToLocalStorage(arr1, id) {
     arr1.push(id);
     element.classList.add("liked");
     localStorage.setItem("favorites", JSON.stringify(arr1));
+    s;
   }
 }
 
@@ -150,9 +150,7 @@ function favoriteFunc(id) {
   if (arr1) {
     addToLocalStorage(arr1, id);
   } else {
-    localStorage.setItem("favorites", JSON.stringify([]));
-    let arr1 = JSON.parse(localStorage.getItem("favorites"));
-    addToLocalStorage(arr1, id);
+    addToLocalStorage([], id);
   }
 }
 
