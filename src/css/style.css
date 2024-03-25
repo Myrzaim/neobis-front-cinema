@@ -41,6 +41,14 @@ body {
   margin: 0 1rem;
 }
 
+ul li:hover {
+  background-color: white;
+  border-radius: 10px;
+}
+ul li:hover a {
+  color: black;
+}
+
 .container {
   margin: 2rem 0;
   justify-content: center;
@@ -54,6 +62,7 @@ body {
   color: white;
   position: relative;
   padding: 0.5rem;
+  transition: 1s;
 }
 .container__card img {
   width: 16rem;
@@ -87,6 +96,9 @@ body {
 }
 .container__card .liked {
   fill: red;
+}
+.container__card:hover {
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=style.css.map */
